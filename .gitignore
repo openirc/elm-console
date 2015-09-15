@@ -5,3 +5,5 @@ hello.js
 *.elmi
 *.elmo
 node_modules/
+test/build/
+test/Test.txt
