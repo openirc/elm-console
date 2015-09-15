@@ -1,6 +1,6 @@
 module Main where
 
-import IO exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
+import Console exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
 import Task
 
 import List
@@ -24,4 +24,4 @@ hello = putStrLn "Hello, Console!" >>>
         exit 0
 
 port runner : Signal (Task.Task x ())
-port runner = IO.run hello
+port runner = Console.run hello

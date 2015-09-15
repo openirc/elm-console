@@ -1,8 +1,8 @@
-module IO.NativeCom where
+module Console.NativeCom where
 
 import Task exposing (Task)
 
-import Native.NativeCom
+import Native.Console.NativeCom
 
 type IRequest = Put String
               | Exit Int
@@ -18,8 +18,8 @@ sendRequests requests =
 
 sendRequestBatch : List IRequest -> Task x ()
 sendRequestBatch requests =
-    Native.NativeCom.sendRequestBatch requests
+    Native.Console.NativeCom.sendRequestBatch requests
 
 responses : Signal IResponse
 responses =
-    Native.NativeCom.responses
+    Native.Console.NativeCom.responses

@@ -1,10 +1,12 @@
-Elm.Native.NativeCom = {};
-Elm.Native.NativeCom.make = function(localRuntime) {
+Elm.Native.Console = {};
+Elm.Native.Console.NativeCom = {};
+Elm.Native.Console.NativeCom.make = function(localRuntime) {
 
     localRuntime.Native = localRuntime.Native || {};
-    localRuntime.Native.NativeCom = localRuntime.Native.NativeCom || {};
-    if (localRuntime.Native.NativeCom.values) {
-    return localRuntime.Native.NativeCom.values;
+    localRuntime.Native.Console = localRuntime.Console.Native || {};
+    localRuntime.Native.Console.NativeCom = localRuntime.Native.Console.NativeCom || {};
+    if (localRuntime.Native.Console.NativeCom.values) {
+    return localRuntime.Native.Console.NativeCom.values;
     }
 
     /* Elm imports */
@@ -28,7 +30,7 @@ Elm.Native.NativeCom.make = function(localRuntime) {
         }, 0);
     }
 
-    var responsesSignal = NS.input('IO.NativeCom.responses', Maybe.Nothing);
+    var responsesSignal = NS.input('Console.NativeCom.responses', Maybe.Nothing);
     stdin.on('data', function(chunk) {
         stdin.pause();
         sendResponseString(chunk.toString());
@@ -76,7 +78,7 @@ Elm.Native.NativeCom.make = function(localRuntime) {
         }
     }
 
-    return localRuntime.Native.NativeCom.values = {
+    return localRuntime.Native.Console.NativeCom.values = {
         sendRequestBatch: sendRequestBatch,
         responses: responsesSignal
     };

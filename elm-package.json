@@ -1,13 +1,13 @@
 {
     "version": "2.0.0",
-    "summary": "Terminal-based IO Side Effects",
-    "repository": "https://github.com/maxsnew/IO.git",
+    "summary": "Reading and writing from the console in Node",
+    "repository": "https://github.com/laszlopandy/elm-console.git",
     "license": "BSD3",
     "source-directories": [
         "src"
     ],
     "exposed-modules": [
-        "IO"
+        "Console"
     ],
     "native-modules": true,
     "dependencies": {

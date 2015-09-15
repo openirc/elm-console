@@ -1,4 +1,4 @@
-module IO (putChar, putStr, putStrLn, getChar, getLine, readUntil, writeFile,
+module Console (putChar, putStr, putStrLn, getChar, getLine, readUntil, writeFile,
            exit, map, mapIO, forEach, pure, apply, (<*>), andThen, (>>=),
            seq, (>>>), forever, IO, run) where
 
@@ -7,7 +7,7 @@ module IO (putChar, putStr, putStrLn, getChar, getLine, readUntil, writeFile,
 A library for writing terminal-based scripts in elm.  The IO type
 provides an interface for constructing "computations" that may perform
 IO effects. Something with type `IO a` is a lazy computation that when
-run will produce an `a`, possibly IO side effects. See IO.Runner for
+run will produce an `a`, possibly IO side effects. See Console.Runner for
 how to run such a computation.
 
 # IO Type
@@ -30,8 +30,8 @@ how to run such a computation.
       (<*>), andThen, (>>=), seq, (>>>), forever
 -}
 
-import IO.Core as Core
-import IO.Runner as Runner
+import Console.Core as Core
+import Console.Runner as Runner
 import Task exposing (Task)
 
 -- IO Actions

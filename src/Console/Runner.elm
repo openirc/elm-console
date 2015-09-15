@@ -1,4 +1,4 @@
-module IO.Runner where
+module Console.Runner where
 
 import Dict
 import Json.Decode exposing ((:=))
@@ -12,11 +12,11 @@ import String
 import Task exposing (Task)
 import Trampoline
 
-import IO.Core as Core
-import IO.Core exposing (IO(..), IOF(..))
-import IO.NativeCom as NativeCom
-import IO.NativeCom as NC
-import IO.NativeCom exposing (IRequest, IResponse)
+import Console.Core as Core
+import Console.Core exposing (IO(..), IOF(..))
+import Console.NativeCom as NativeCom
+import Console.NativeCom as NC
+import Console.NativeCom exposing (IRequest, IResponse)
 
 type alias IOState  = { buffer : String }
 

@@ -1,8 +1,7 @@
-IO in Elm [![Build Status](https://travis-ci.org/maxsnew/IO.png?branch=master)](https://travis-ci.org/maxsnew/IO)
+IO in Elm [![Build Status](https://travis-ci.org/laszlopandy/elm-console.png?branch=master)](https://travis-ci.org/laszlopandy/elm-console)
 =========
 
-This repo provides a library for writing console-based programs in
-Elm.
+This library allows reading and writing from the console in Node.
 
 Example
 -------
@@ -10,7 +9,7 @@ An elm Program:
 ```elm
 module Main where
 
-import IO exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
+import Console exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
 import Task
 
 import List
@@ -34,7 +33,7 @@ hello = putStrLn "Hello, Console!" >>>
         exit 0
 
 port runner : Signal (Task.Task x ())
-port runner = IO.run hello
+port runner = Console.run hello
 ```
 
 link in some javascript and then run:
@@ -49,13 +48,6 @@ hooray
 hooray
 That's all, folks!
 ```
-
-Command Line Interface
-----------------------
-
-The basic interface is `elm-io.sh infile outfile`, where `infile` is a
-compiled Elm file with requests and response signals set up as above
-and `outfile` is the desired filename for the compiled output.
 
 Design and Implementation
 -------------------------

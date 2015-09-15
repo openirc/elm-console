@@ -1,4 +1,4 @@
-module IO.Core where
+module Console.Core where
 
 import String
 
