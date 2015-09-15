@@ -1,7 +1,8 @@
-IO in Elm [![Build Status](https://travis-ci.org/laszlopandy/elm-console.png?branch=master)](https://travis-ci.org/laszlopandy/elm-console)
+Elm Console [![Build Status](https://travis-ci.org/laszlopandy/elm-console.png?branch=master)](https://travis-ci.org/laszlopandy/elm-console)
 =========
 
 This library allows reading and writing from the console in Node.
+It is a replacement for `maxsnew/IO`, which is no longer updated.
 
 Example
 -------
