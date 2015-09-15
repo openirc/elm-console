@@ -1,12 +1,11 @@
 module Main where
 
-import IO exposing (..)
-import IO
+import IO exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
+import Task
 
 import List
 import Maybe
 import String
-import Task
 
 echo : IO ()
 echo = forever (getLine >>= putStrLn)
@@ -19,11 +18,9 @@ loop = getLine >>= \s ->
        
 hello : IO ()
 hello = putStrLn "Hello, Console!" >>>
-        writeFile { file = "test.txt", content = "hellow file" } >>>
         putStrLn "I'll echo your input until you say \"exit\":" >>>
         loop >>>
-        putStrLn "That's all, folks! Here's some blahs:"  >>>
-        putStrLn (String.concat <| List.repeat 100000 "blah ") >>>
+        putStrLn "That's all, folks!" >>>
         exit 0
 
 port runner : Signal (Task.Task x ())
