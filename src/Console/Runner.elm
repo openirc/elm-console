@@ -7,7 +7,7 @@ import Json.Encode as JSE
 import List exposing ((::))
 import List
 import Result
-import Signal exposing (Signal, (<~), foldp)
+import Signal exposing (Signal, foldp)
 import String
 import Task exposing (Task)
 import Trampoline
@@ -28,7 +28,7 @@ run io =
   let init               = (\_ -> io, start, [NC.Init])
       f resp (io, st, _) = step resp io st
       third (_, _, z)    = z
-  in NativeCom.sendRequests (third <~ foldp f init NativeCom.responses)
+  in NativeCom.sendRequests (Signal.map third <| foldp f init NativeCom.responses)
 
 putS : String -> IRequest
 putS = NC.Put
@@ -83,7 +83,7 @@ step : IResponse ->
 step resp io st =
   let newST = case resp of
         Nothing -> st
-        Just s  -> { st | buffer <- String.append st.buffer s }
+        Just s  -> { st | buffer = String.append st.buffer s }
       (newST', (rs, k)) = extractRequests (io ()) newST
   in (k, newST', rs)
 
@@ -97,7 +97,7 @@ mapSt : (a -> b) -> State s a -> State s b
 mapSt f sf = sf >>= (pure << f)
 
 (>>=) : State s a -> (a -> State s b) -> State s b
-f >>= k = \s -> let (s', y) = f s
+(>>=) f k = \s -> let (s', y) = f s
                 in k y s'
 
 get : State s s
