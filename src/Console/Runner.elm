@@ -83,7 +83,7 @@ step : IResponse ->
 step resp io st =
   let newST = case resp of
         Nothing -> st
-        Just s  -> { st | buffer = String.append st.buffer s }
+        Just s  -> { buffer = String.append st.buffer s }
       (newST', (rs, k)) = extractRequests (io ()) newST
   in (k, newST', rs)
 
