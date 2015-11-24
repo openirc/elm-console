@@ -16,9 +16,20 @@ Elm.Native.Console.NativeCom.make = function(localRuntime) {
     var Task = Elm.Native.Task.make(localRuntime);
     var Utils = Elm.Native.Utils.make(localRuntime);
 
+
+    var fs = null;
+
     /* Node.js imports */
-    var fs = require('fs');
-    var stdin = process.stdin;
+    if (typeof module !== 'undefined' && module.exports) {
+        fs = require('fs');
+
+        process.stdin.on('data', function(chunk) {
+            process.stdin.pause();
+            sendResponseString(chunk.toString());
+        })
+    }
+
+    var responsesSignal = NS.input('Console.NativeCom.responses', Maybe.Nothing);
 
     var sendResponseString = function(str) {
         var value = Maybe.Nothing;
@@ -29,12 +40,6 @@ Elm.Native.Console.NativeCom.make = function(localRuntime) {
             localRuntime.notify(responsesSignal.id, value);
         }, 0);
     }
-
-    var responsesSignal = NS.input('Console.NativeCom.responses', Maybe.Nothing);
-    stdin.on('data', function(chunk) {
-        stdin.pause();
-        sendResponseString(chunk.toString());
-    })
 
     var sendRequestBatch = function(list) {
         var requests = List.toArray(list);
@@ -63,7 +68,7 @@ Elm.Native.Console.NativeCom.make = function(localRuntime) {
                 process.stdout.write(request._0);
                 break;
             case 'Get':
-                stdin.resume();
+                process.stdin.resume();
                 break;
             case 'Exit':
                 process.exit(request._0);
