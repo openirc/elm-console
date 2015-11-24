@@ -8,7 +8,7 @@ mkdir -p build/
 
 elm-make --yes --output build/test1.js Test.elm
 echo "Elm.worker(Elm.Main);" >> build/test1.js
-echo "exit" | node build/test1.js
+echo "echotest\nexit" | node build/test1.js
 
 elm-make --yes --output build/test2.js FileTest.elm
 echo "Elm.worker(Elm.Main);" >> build/test2.js
