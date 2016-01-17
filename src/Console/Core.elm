@@ -91,11 +91,11 @@ seq : IO a -> IO b -> IO b
 seq x y = x >>= \_ -> y
 
 {-| Run several computations in a sequence, combining all results into a list -}
-sequence : List (IO a) -> IO (List a)
-sequence ios =
+sequenceMany : List (IO a) -> IO (List a)
+sequenceMany ios =
   case ios of
     [] -> pure []
-    first :: rest -> map2 (::) first (sequence rest)
+    first :: rest -> map2 (::) first (sequenceMany rest)
 
 {-| Operator version of seq -}
 (>>>) : IO a -> IO b -> IO b
