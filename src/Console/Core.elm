@@ -47,6 +47,13 @@ map f io = case io of
   Pure   a   -> Pure (f a)
   Impure iof -> Impure (mapF (map f) iof)
 
+{-| Apply a pure function to two IO values -}
+map2 : (a -> b -> result) -> IO a -> IO b -> IO result
+map2 f a b =
+  a `andThen` \x ->
+  b `andThen` \y ->
+    pure (f x y)
+
 {-| Alternative interface to forEach  -}
 mapIO : (a -> IO ()) -> List a -> IO ()
 mapIO f xs = List.foldr (seq << f) (pure ()) xs
@@ -82,6 +89,13 @@ andThen io f = case io of
 {-| Run one computation and then another, ignoring the first's output -}
 seq : IO a -> IO b -> IO b
 seq x y = x >>= \_ -> y
+
+{-| Run several computations in a sequence, combining all results into a list -}
+sequence : List (IO a) -> IO (List a)
+sequence ios =
+  case ios of
+    [] -> pure []
+    first :: rest -> map2 (::) first (sequence rest)
 
 {-| Operator version of seq -}
 (>>>) : IO a -> IO b -> IO b

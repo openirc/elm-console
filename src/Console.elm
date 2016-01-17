@@ -1,6 +1,6 @@
 module Console (putChar, putStr, putStrLn, getChar, getLine, readUntil, writeFile,
-           exit, map, mapIO, forEach, pure, apply, (<*>), andThen, (>>=),
-           seq, (>>>), forever, IO, run) where
+           exit, map, map2, mapIO, forEach, pure, apply, (<*>), andThen, (>>=),
+           seq, sequence, (>>>), forever, IO, run) where
 
 {-|
 
@@ -26,8 +26,8 @@ how to run such a computation.
 @docs exit
 
 # Plumbing
-@docs map, mapIO, forEach, pure, apply,
-      (<*>), andThen, (>>=), seq, (>>>), forever
+@docs map, map2, mapIO, forEach, pure, apply,
+      (<*>), andThen, (>>=), seq, sequence, (>>>), forever
 -}
 
 import Console.Core as Core
@@ -71,6 +71,10 @@ getLine = Core.getLine
 map : (a -> b) -> Core.IO a -> Core.IO b
 map = Core.map 
 
+{-| Apply a pure function to two IO values -}
+map2 : (a -> b -> result) -> IO a -> IO b -> IO result
+map2 = Core.map2
+
 {-| Alternative interface to forEach  -}
 mapIO : (a -> Core.IO ()) -> List a -> Core.IO ()
 mapIO = Core.mapIO
@@ -102,6 +106,10 @@ andThen = Core.andThen
 {-| Run one computation and then another, ignoring the first's output -}
 seq : Core.IO a -> Core.IO b -> Core.IO b
 seq = Core.seq
+
+{-| Run several computations in a sequence, combining all results into a list -}
+sequence : List (IO a) -> IO (List a)
+sequence = Core.sequence
 
 {-| Operator version of seq -}
 (>>>) : Core.IO a -> Core.IO b -> Core.IO b
