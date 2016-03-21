@@ -20,7 +20,7 @@ Elm.Native.Console.NativeCom.make = function(localRuntime) {
     var fs = null;
 
     /* Node.js imports */
-    if (typeof module !== 'undefined' && module.exports) {
+    if (typeof module !== 'undefined' && module.exports && typeof require !== 'undefined') {
         fs = require('fs');
 
         process.stdin.on('data', function(chunk) {
