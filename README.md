@@ -1,8 +1,7 @@
-Elm Console [![Build Status](https://travis-ci.org/laszlopandy/elm-console.png?branch=master)](https://travis-ci.org/laszlopandy/elm-console)
+Elm Console [![Build Status]][travis]
 =========
-
 This library allows reading and writing from the console in Node.
-It is a replacement for `maxsnew/IO`, which is no longer updated.
+It is a replacement for [`maxsnew/IO`], which is no longer updated.
 
 Example
 -------
@@ -25,7 +24,7 @@ loop = getLine >>= \s ->
        if s == "exit"
        then pure ()
        else putStrLn s >>> loop
-       
+
 hello : IO ()
 hello = putStrLn "Hello, Console!" >>>
         putStrLn "I'll echo your input until you say \"exit\":" >>>
@@ -38,7 +37,7 @@ port runner = Console.run hello
 ```
 
 link in some javascript and then run:
-```
+```console
 $ elm-make --yes test/Test.elm raw-test.js
 ...
 $ ./elm-io.sh raw-test.js test.js
@@ -52,5 +51,9 @@ That's all, folks!
 
 Design and Implementation
 -------------------------
-The implementation is based on the
-[IOSpec](http://hackage.haskell.org/package/IOSpec) haskell library.
+The implementation is based on the [IOSpec] haskell library.
+
+[Build Status]: https://travis-ci.org/openirc/elm-console.svg?branch=master
+[travis]: https://travis-ci.org/openirc/elm-console
+[`maxsnew/IO`]: https://github.com/maxsnew/IO
+[IOSpec]: http://hackage.haskell.org/package/IOSpec
