@@ -53,6 +53,12 @@ Design and Implementation
 -------------------------
 The implementation is based on the [IOSpec] haskell library.
 
+<br>
+
+--------
+
+[BSD 3-Clause License](LICENSE)
+
 [Build Status]: https://travis-ci.org/openirc/elm-console.svg?branch=master
 [travis]: https://travis-ci.org/openirc/elm-console
 [`maxsnew/IO`]: https://github.com/maxsnew/IO
