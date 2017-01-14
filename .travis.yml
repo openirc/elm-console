@@ -1,7 +1,6 @@
-sudo: false
-language: none
-install:
-  - npm install --global elm@2.0.0
+language: node_js
+node_js: node
+cache: yarn
 
 script:
-  - ./test/run-tests.sh
+  - PATH="$PWD/node_modules/.bin/:$PATH" test/run-tests.sh
