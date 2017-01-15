@@ -49,6 +49,24 @@ hooray
 That's all, folks!
 ```
 
+<br>
+
+How to contribute
+-----------
+Please fork this repo and send Pull Requests!
+
+```bash
+# Install dependencies including Elm runtime
+yarn
+# Perform tests
+yarn test
+
+# Open Elm REPL
+yarn elm-repl
+# Generator documentation.json
+yarn elm-make -- --docs documentation.json
+```
+
 Design and Implementation
 -------------------------
 The implementation is based on the [IOSpec] haskell library.

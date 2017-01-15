@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "PATH=\"$PWD/node_modules/.bin/:$PATH\" test/run-tests.sh"
+  },
   "devDependencies": {
     "elm": "^0.16"
   }
