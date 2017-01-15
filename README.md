@@ -7,7 +7,7 @@ Example
 -------
 An elm Program:
 ```elm
-module Main where
+module Main exposing (..)
 
 import Console exposing (IO, (>>>), (>>=), forever, getLine, pure, exit, putStrLn)
 import Task
